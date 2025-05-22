@@ -1,8 +1,27 @@
 plugins { 
     id 'java-library'
     id 'maven-publish'  
+    id 'com.diffplug.spotless' version '7.0.3'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
+
+repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://repo.jenkins-ci.org/public/' }
+        maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+        mavenLocal()
+}
+
+spotless {
+    java {
+        target "**/*.java"		  
+        googleJavaFormat()
+    }
+} 
 
 shadowJar {    
     mergeServiceFiles() 
@@ -24,6 +43,8 @@ java {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'])
     
+    compileOnly("com.google.googlejavaformat:google-java-format:1.27.0")
+
     implementation files('remaped/build/libs/remaped.jar')
 }
 

@@ -20,12 +20,32 @@ buildscript {
         classpath "org.ow2.asm:asm:9.8"
         classpath "org.ow2.asm:asm-commons:9.8"
         classpath "org.ow2.asm:asm-tree:9.8"
+        classpath "com.google.googlejavaformat:google-java-format:1.27.0"
     }
 }
 
 plugins {
     id 'java-library'
+    id 'com.diffplug.spotless' version '7.0.3'
 }
+
+repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://repo.jenkins-ci.org/public/' }
+        maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+        mavenLocal()
+}
+
+spotless {
+    java {
+        target "**/*.java"		  
+        googleJavaFormat()
+    }
+} 
 
 apply plugin: RemapingPlugin
 
