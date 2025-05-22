@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+tasks.assemble.dependsOn tasks.shadowJar
+tasks.build.dependsOn tasks.shadowJar
+
+tasks.named("jar").configure {
+    enabled = false
+}
+
+shadowJar {
+    exclude '**/*package-info.class'
+    
+    exclude '**/*javax/lang/model/SourceVersion*'
+
+    archiveFileName.set("${project.name}.jar")
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'])
+}

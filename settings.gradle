@@ -1,3 +1,4 @@
 rootProject.name = 'javac'
 
 include ":remaped"
+include ":lib"

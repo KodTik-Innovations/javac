@@ -30,6 +30,8 @@ shadowJar {
     
     dependsOn ':remaped:remap'
     dependsOn ':remaped:jar'
+    dependsOn ':lib:shadowJar'
+    dependsOn ':lib:jar'
 } 
 
 tasks.assemble.dependsOn tasks.shadowJar
@@ -46,6 +48,7 @@ dependencies {
     compileOnly("com.google.googlejavaformat:google-java-format:1.27.0")
 
     implementation files('remaped/build/libs/remaped.jar')
+    implementation files('lib/build/libs/lib.jar')
 }
 
 publishing {
