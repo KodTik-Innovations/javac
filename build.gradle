@@ -1,0 +1,39 @@
+plugins { 
+    id 'java-library'
+    id 'maven-publish'  
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+shadowJar {    
+    mergeServiceFiles() 
+    
+    archiveFileName.set("${project.rootProject.name}.jar")
+    
+    dependsOn ':remaped:remap'
+    dependsOn ':remaped:jar'
+} 
+
+tasks.assemble.dependsOn tasks.shadowJar
+tasks.build.dependsOn tasks.shadowJar
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+	
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'])
+    
+    implementation files('remaped/build/libs/remaped.jar')
+}
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            groupId = 'org.kodtik.ide'
+            artifactId = 'javac'
+            version = '24-29'
+            from project.shadow.component(publication)
+        }        
+    }
+}
