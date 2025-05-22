@@ -23,7 +23,7 @@
  * questions.
  */
 
-package jadx.lang.model;
+package javx.lang.model;
 
 import static openjdk.sun.tools.reflection.android.AndroidSupport.isDalvik;
 

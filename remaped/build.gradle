@@ -102,13 +102,24 @@ abstract class RemapingTask extends DefaultTask {
         Remapper remapper = new Remapper() {
             @Override
             String map(String name) {
-                if (name.startsWith("jadx")) return name.replaceFirst("^jadx", "jdk")
-                if (name.startsWith("openjdk") &&
-                    !name.matches("openjdk/sun/tools/javac/resources/compiler(_[a-zA-Z_]+)?")) {
-                    return name.replaceFirst("^openjdk", "com")
+                if (name.startsWith("jadx")) {
+                    return name.replaceFirst("^jadx", "jdk")
                 }
-                if (name.startsWith("jax")) return name.replaceFirst("^jax", "sun")
-                if (name.startsWith("javx")) return name.replaceFirst("^javx", "javax")
+                if (name.startsWith("openjdk")) {
+                    if (name.equals("openjdk/sun/tools/javac/resources/compiler")
+                        || name.equals("openjdk/sun/tools/javac/resources/compiler_de")
+                        || name.equals("openjdk/sun/tools/javac/resources/compiler_zh_CN")
+                        || name.equals("openjdk/sun/tools/javac/resources/compiler_ja")) {
+                    return name
+                    }                
+                return name.replaceFirst("^openjdk", "com");
+                }
+                if (name.startsWith("jax")) {
+                    return name.replaceFirst("^jax", "sun");
+                }
+                if (name.startsWith("javx")) {
+                    return name.replaceFirst("^javx", "javax");
+                }
                 return name
             }
         }
