@@ -19,6 +19,7 @@ shadowJar {
     exclude '**/*com/sun/tools/javac/file/JavacFileManager*'
     exclude '**/*com/sun/tools/javac/file/JRTIndex*'
     exclude '**/*com/sun/tools/jdeprscan/Main*'
+    exclude '**/*com/sun/tools/javap/BasicWriter*'
   
     archiveFileName.set("${project.name}.jar")
 }
