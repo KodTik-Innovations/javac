@@ -359,7 +359,7 @@ public class Main implements DiagnosticListener<JavaFileObject> {
     }
 
     // deenu modify: android check
-    hasModules = !isDalvik() && hasModules;
+    hasModules = isDalvik() && hasModules;
 
     options.addAll(List.of("--release", release));
 
