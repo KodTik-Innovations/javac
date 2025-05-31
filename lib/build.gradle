@@ -15,6 +15,8 @@ shadowJar {
     
     exclude '**/*javax/lang/model/SourceVersion*'
     exclude '**/*jdk/internal/jrtfs/SystemImage*'
+    exclude '**/*com/sun/tools/javac/file/JRTIndex*'
+    exclude '**/*com/sun/tools/javac/code/Source*'
     
     archiveFileName.set("${project.name}.jar")
 }

@@ -63,6 +63,7 @@ dependencies {
     compileOnly files('libs/remapped-jdk-internal-opt-24-29.jar')
     compileOnly files('libs/remapped-jdk-jdeps-24-29.jar')
     compileOnly files('libs/remapped-jrt-fs-24-29.jar')
+    compileOnly files('libs/remapped-android-zipfs.jar')
 }
 
 class RemapingPlugin implements Plugin<Project> {
