@@ -121,7 +121,9 @@ public class ClassWriter extends BasicWriter {
         method = m;
     }
 
-    public void write(ClassFile cf) {
+    public boolean write(ClassFile cf) {
+      errorReported = false;
+      
         setClassFile(cf);
 
         if (options.sysInfo || options.verbose) {
@@ -275,7 +277,30 @@ public class ClassWriter extends BasicWriter {
         if (options.verbose) {
             attrWriter.write(cf, cf.attributes, constant_pool);
         }
+    
+    if (options.verify) {
+           /* var vErrors = VERIFIER.verify(cf);
+            if (!vErrors.isEmpty()) {
+                println();
+                for (var ve : vErrors) {
+                    println(ve.getMessage());
+                }
+                errorReported = true;
+            }*/
+        }
+    return !errorReported;
+    
     }
+
+/*private static final ClassFile VERIFIER = ClassFile.of(ClassFile.ClassHierarchyResolverOption.of(
+            ClassHierarchyResolver.defaultResolver().orElse(new ClassHierarchyResolver() {
+                @Override
+                public ClassHierarchyResolver.ClassHierarchyInfo getClassInfo(ClassDesc classDesc) {
+                    // mark all unresolved classes as interfaces to exclude them from assignability verification
+                    return ClassHierarchyInfo.ofInterface();
+                }
+            }))); */
+
     // where
         class JavaTypePrinter implements Type.Visitor<StringBuilder,StringBuilder> {
             boolean isInterface;

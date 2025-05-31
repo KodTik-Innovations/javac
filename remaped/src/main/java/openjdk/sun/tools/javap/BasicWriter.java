@@ -26,10 +26,12 @@
 package openjdk.sun.tools.javap;
 
 import java.io.PrintWriter;
-
-import openjdk.sun.tools.classfile.AttributeException;
-import openjdk.sun.tools.classfile.ConstantPoolException;
-import openjdk.sun.tools.classfile.DescriptorException;
+import java.lang.classfile.AccessFlags;
+import java.lang.reflect.Modifier;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 
 /*
  *  A writer similar to a PrintWriter but which does not hide exceptions.
@@ -41,6 +43,7 @@ import openjdk.sun.tools.classfile.DescriptorException;
  *  deletion without notice.</b>
  */
 public class BasicWriter {
+    
     protected BasicWriter(Context context) {
         lineWriter = LineWriter.instance(context);
         out = context.get(PrintWriter.class);
@@ -49,12 +52,21 @@ public class BasicWriter {
             throw new AssertionError();
     }
 
+    
     protected void print(String s) {
         lineWriter.print(s);
     }
 
     protected void print(Object o) {
         lineWriter.print(o == null ? null : o.toString());
+    }
+
+    protected void print(Supplier<Object> safeguardedCode) {
+        try {
+            print(safeguardedCode.get());
+        } catch (IllegalArgumentException e) {
+            print(report(e));
+        }
     }
 
     protected void println() {
@@ -71,6 +83,11 @@ public class BasicWriter {
         lineWriter.println();
     }
 
+    protected void println(Supplier<Object> safeguardedCode) {
+        print(safeguardedCode);
+        lineWriter.println();
+    }
+
     protected void indent(int delta) {
         lineWriter.indent(delta);
     }
@@ -83,23 +100,15 @@ public class BasicWriter {
         lineWriter.pendingNewline = b;
     }
 
-    protected String report(AttributeException e) {
+    protected String report(Exception e) {
         out.println("Error: " + e.getMessage()); // i18n?
-        return "???";
-    }
-
-    protected String report(ConstantPoolException e) {
-        out.println("Error: " + e.getMessage()); // i18n?
-        return "???";
-    }
-
-    protected String report(DescriptorException e) {
-        out.println("Error: " + e.getMessage()); // i18n?
+        errorReported = true;
         return "???";
     }
 
     protected String report(String msg) {
         out.println("Error: " + msg); // i18n?
+        errorReported = true;
         return "???";
     }
 
@@ -123,6 +132,7 @@ public class BasicWriter {
     private LineWriter lineWriter;
     private PrintWriter out;
     protected Messages messages;
+    protected boolean errorReported;
 
     private static class LineWriter {
         static LineWriter instance(Context context) {

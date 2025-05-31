@@ -29,6 +29,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
+import static openjdk.sun.tools.classfile.ClassFile.*;
 import openjdk.sun.tools.classfile.AccessFlags;
 
 /*
@@ -54,6 +55,26 @@ public class Options {
     /**
      * Checks access of class, field or method.
      */
+    public boolean checkAccess(int flags){
+
+        boolean isPublic = (flags &  AccessFlags.  ACC_PUBLIC) != 0;
+        boolean isProtected = (flags &  AccessFlags. ACC_PROTECTED) != 0;
+        boolean isPrivate = (flags & AccessFlags.  ACC_PRIVATE) != 0;
+        boolean isPackage = !(isPublic || isProtected || isPrivate);
+
+        if ((showAccess ==  AccessFlags. ACC_PUBLIC) && (isProtected || isPrivate || isPackage))
+            return false;
+        else if ((showAccess == AccessFlags.  ACC_PROTECTED) && (isPrivate || isPackage))
+            return false;
+        else if ((showAccess == 0) && (isPrivate))
+            return false;
+        else
+            return true;
+    }
+
+    /**
+     * Checks access of class, field or method.
+     */
     public boolean checkAccess(AccessFlags flags){
 
         boolean isPublic = flags.is(AccessFlags.ACC_PUBLIC);
@@ -71,6 +92,7 @@ public class Options {
             return true;
     }
 
+
     public boolean help;
     public boolean verbose;
     public boolean version;
@@ -86,6 +108,7 @@ public class Options {
     public boolean showConstants;
     public boolean sysInfo;
     public boolean showInnerClasses;
+    public boolean verify;
     public int indentWidth = 2;   // #spaces per indentWidth level; must be > 0
     public int tabColumn = 40;    // column number for comments; must be > 0
     public String moduleName;
