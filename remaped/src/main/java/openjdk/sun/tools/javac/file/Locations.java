@@ -77,7 +77,7 @@ import javx.tools.StandardJavaFileManager;
 import javx.tools.StandardJavaFileManager.PathFactory;
 import javx.tools.StandardLocation;
 
-import jadx.internal.jmod.JmodFile;
+// import jadx.internal.jmod.JmodFile;
 
 import openjdk.sun.tools.javac.code.Lint;
 import openjdk.sun.tools.javac.code.Lint.LintCategory;
@@ -1455,7 +1455,7 @@ public class Locations {
                     return null;
                 }
 
-                if (p.getFileName().toString().endsWith(".jmod")) {
+              /*  if (p.getFileName().toString().endsWith(".jmod")) {
                     try {
                         // check if the JMOD file is valid
                         JmodFile.checkMagic(p);
@@ -1489,7 +1489,7 @@ public class Locations {
                         log.error(Errors.LocnCantReadFile(p));
                         return null;
                     }
-                }
+                } */
 
                 if (warn && false) {  // temp disable, when enabled, massage examples.not-yet.txt suitably.
                     log.warning(Warnings.LocnUnknownFileOnModulePath(p));
@@ -1969,7 +1969,7 @@ public class Locations {
                     FileSystem jrtfs;
 
                   if (isDalvik()) {
-                        jrtfs = com.itsaky.androidide.zipfs2.AndroidFsProvider.INSTANCE.jrtFileSystem();
+                        jrtfs = AndroidFsProvider.INSTANCE.jrtFileSystem();
                     } else if (isCurrentPlatform(systemJavaHome)) {
                         jrtfs = FileSystems.getFileSystem(jrtURI);
                     } else {
