@@ -13,11 +13,13 @@ tasks.named("jar").configure {
 shadowJar {
     exclude '**/*package-info.class'
     
-    exclude '**/*javax/lang/model/SourceVersion*'
     exclude '**/*jdk/internal/jrtfs/SystemImage*'
-    exclude '**/*com/sun/tools/javac/file/JRTIndex*'
+    exclude '**/*javax/lang/model/SourceVersion*'  
     exclude '**/*com/sun/tools/javac/code/Source*'
-    
+    exclude '**/*com/sun/tools/javac/file/JavacFileManager*'
+    exclude '**/*com/sun/tools/javac/file/JRTIndex*'
+    exclude '**/*com/sun/tools/jdeprscan/Main*'
+  
     archiveFileName.set("${project.name}.jar")
 }
 
