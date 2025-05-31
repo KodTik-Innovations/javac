@@ -27,7 +27,6 @@ package openjdk.sun.tools.javap;
 
 import openjdk.sun.tools.classfile.Instruction;
 
-
 /*
  *  Write additional details for an instruction.
  *
@@ -37,25 +36,26 @@ import openjdk.sun.tools.classfile.Instruction;
  *  deletion without notice.</b>
  */
 public abstract class InstructionDetailWriter extends BasicWriter {
-    public enum Kind {
-        LOCAL_VARS("localVariables"),
-        LOCAL_VAR_TYPES("localVariableTypes"),
-        SOURCE("source"),
-        STACKMAPS("stackMaps"),
-        TRY_BLOCKS("tryBlocks"),
-        TYPE_ANNOS("typeAnnotations");
+  public enum Kind {
+    LOCAL_VARS("localVariables"),
+    LOCAL_VAR_TYPES("localVariableTypes"),
+    SOURCE("source"),
+    STACKMAPS("stackMaps"),
+    TRY_BLOCKS("tryBlocks"),
+    TYPE_ANNOS("typeAnnotations");
 
-        Kind(String option) {
-            this.option = option;
-        }
-
-        final String option;
+    Kind(String option) {
+      this.option = option;
     }
 
-    InstructionDetailWriter(Context context) {
-        super(context);
-    }
+    final String option;
+  }
 
-    abstract void writeDetails(Instruction instr);
-    void flush() { }
+  InstructionDetailWriter(Context context) {
+    super(context);
+  }
+
+  abstract void writeDetails(Instruction instr);
+
+  void flush() {}
 }
