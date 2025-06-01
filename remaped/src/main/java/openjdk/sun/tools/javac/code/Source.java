@@ -277,6 +277,7 @@ public enum Source {
     }
 
     public boolean allowedInSource(Source source) {
+      // deenu modify: android check
       if (isDalvik() && optFragment == Fragments.FeatureModules) {
         return false;
       }

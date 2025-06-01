@@ -1967,7 +1967,8 @@ public class Locations {
                 try {
                     URI jrtURI = URI.create("jrt:/");
                     FileSystem jrtfs;
-
+                    
+                        // deenu modify: android check
                   if (isDalvik()) {
                         jrtfs = AndroidFsProvider.INSTANCE.jrtFileSystem();
                     } else if (isCurrentPlatform(systemJavaHome)) {

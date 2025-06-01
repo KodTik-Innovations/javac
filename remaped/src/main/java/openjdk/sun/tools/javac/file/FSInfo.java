@@ -150,6 +150,7 @@ public class FSInfo {
     }
 
     try {
+      // deenu modify: android check
       if (isDalvik()) {
         return jarFSProvider = AndroidFsProvider.INSTANCE.zipFsProvider();
       }
