@@ -14,7 +14,8 @@ shadowJar {
     exclude '**/*package-info.class'
     
     exclude '**/*jdk/internal/jrtfs/SystemImage*'
-    exclude '**/*javax/lang/model/SourceVersion*'  
+    exclude '**/*javax/lang/model/SourceVersion*' 
+    exclude '**/*javax/tools/ToolProvider*'  
     exclude '**/*com/sun/tools/javac/code/Source*'
     exclude '**/*com/sun/tools/javac/file/JavacFileManager*'
     exclude '**/*com/sun/tools/javac/file/JRTIndex*'
