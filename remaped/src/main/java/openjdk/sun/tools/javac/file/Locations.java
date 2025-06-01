@@ -1908,12 +1908,13 @@ public class Locations {
         }
 
         private void update(Path p) {
-            if (!isCurrentPlatform(p)) {
+            // deenu modify: remove check
+            /*if (!isCurrentPlatform(p)) {
                 var noJavaRuntimeFS = Files.notExists(resolveInJavaHomeLib(p, "jrt-fs.jar"));
                 var noModulesFile = Files.notExists(resolveInJavaHomeLib(p, "modules"));
                 if (noJavaRuntimeFS || noModulesFile)
                     throw new IllegalArgumentException(p.toString());
-            }
+            }*/
             systemJavaHome = p;
             modules = null;
         }
