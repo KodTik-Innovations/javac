@@ -21,29 +21,6 @@ shadowJar {
     exclude '**/*com/sun/tools/javac/file/Locations*'
     exclude '**/*com/sun/tools/javac/file/FSInfo*'
 
-    exclude '**/*com/sun/tools/jdeprscan/Main*' 
-    exclude '**/*com/sun/tools/jdeprscan/scan/ClassFinder*' 
-    exclude '**/*com/sun/tools/jdeprscan/scan/CPEntries*' 
-    exclude '**/*com/sun/tools/jdeprscan/scan/CPSelector*' 
-    exclude '**/*com/sun/tools/jdeprscan/scan/MethodSig*' 
-    exclude '**/*com/sun/tools/jdeprscan/scan/Scan*' 
-   
-    exclude '**/*com/sun/tools/javap/AnnotationWriter*'
-    exclude '**/*com/sun/tools/javap/AttributeWriter*'
-    exclude '**/*com/sun/tools/javap/BasicWriter*'
-    exclude '**/*com/sun/tools/javap/ClassWriter*'
-    exclude '**/*com/sun/tools/javap/CodeWriter*'
-    exclude '**/*com/sun/tools/javap/ConstantWriter*'
-    exclude '**/*com/sun/tools/javap/InstructionDetailWriter*'
-    exclude '**/*com/sun/tools/javap/JavapTask*'
-    exclude '**/*com/sun/tools/javap/LocalVariableTableWriter*'
-    exclude '**/*com/sun/tools/javap/LocalVariableTypeTableWriter*'
-    exclude '**/*com/sun/tools/javap/Options*'
-    exclude '**/*com/sun/tools/javap/SourceWriter*'
-    exclude '**/*com/sun/tools/javap/StackMapWriter*'
-    exclude '**/*com/sun/tools/javap/TryBlockWriter*'
-    exclude '**/*com/sun/tools/javap/TypeAnnotationWriter*'
-     
     archiveFileName.set("${project.name}.jar")
 }
 

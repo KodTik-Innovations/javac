@@ -61,7 +61,6 @@ dependencies {
     compileOnly files('libs/remapped-java-compiler-24-29.jar')
     compileOnly files('libs/remapped-jdk-compiler-24-29.jar')
     compileOnly files('libs/remapped-jdk-internal-opt-24-29.jar')
-    compileOnly files('libs/remapped-jdk-jdeps-24-29.jar')
     compileOnly files('libs/remapped-jrt-fs-24-29.jar')
     compileOnly files('libs/remapped-android-zipfs.jar')
 }
