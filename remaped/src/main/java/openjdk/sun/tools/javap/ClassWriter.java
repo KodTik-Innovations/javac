@@ -272,6 +272,7 @@ public class ClassWriter extends BasicWriter {
     }
 
     if (options.verify) {
+      // deenu modify: verify not supported
       /* var vErrors = VERIFIER.verify(cf);
       if (!vErrors.isEmpty()) {
           println();
@@ -280,6 +281,7 @@ public class ClassWriter extends BasicWriter {
           }
           errorReported = true;
       }*/
+      println("options.verify: not supported");
     }
     return !errorReported;
   }
