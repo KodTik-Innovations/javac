@@ -90,7 +90,9 @@ abstract class RemapingTask extends DefaultTask {
         File originalJar = getInputJar()
         File tempJar = new File(project.buildDir, "tmp/libs/${project.name}.jar")
         File outputJar = getOutputJar()
-
+        
+        tempJar.createNewFile()
+        
         tempJar.parentFile.mkdirs()
         outputJar.parentFile.mkdirs()
 
