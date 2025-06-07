@@ -770,13 +770,18 @@ public class Locations {
             if (cp == null) {
                 cp = System.getProperty("env.class.path");
             }
+        
+            // deenu modify: use custom cp dir 
+            if (cp == null) {
+                cp = System.getProperty("javac.platform.classpath");
+            }
 
             // If invoked via a java VM (not the javac launcher), use the
             // platform class path
             if (cp == null && System.getProperty("application.home") == null) {
                 cp = System.getProperty("java.class.path");
-            }
-
+            }                 
+       
             // Default to current working directory.
             if (cp == null) {
                 cp = ".";
