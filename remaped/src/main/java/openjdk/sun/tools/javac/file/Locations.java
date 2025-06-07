@@ -769,13 +769,8 @@ public class Locations {
             // CLASSPATH environment variable when run from `javac'.
             if (cp == null) {
                 cp = System.getProperty("env.class.path");
-            }
-        
-            // deenu modify: use custom cp dir 
-            if (cp == null) {
-                cp = System.getProperty("javac.platform.classpath");
-            }
-
+            }                 
+     
             // If invoked via a java VM (not the javac launcher), use the
             // platform class path
             if (cp == null && System.getProperty("application.home") == null) {
@@ -787,9 +782,20 @@ public class Locations {
                 cp = ".";
             }
 
-            return createPath().addFiles(cp);
-        }
+            SearchPath path = createPath().addFiles(cp);
+            
+            // deenu modify: use custom cp dir 
+            String customCp = System.getProperty("javac.platform.classpath");
+            if (customCp != null) {
+                File customFile = new File(customCp);
+                if (customFile.exists()) {
+                    path.addFiles(customCp); 
+                }
+            }
 
+            return path;
+        }
+    
         @Override
         protected SearchPath createPath() {
             return new SearchPath()
