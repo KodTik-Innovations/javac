@@ -780,20 +780,9 @@ public class Locations {
             // Default to current working directory.
             if (cp == null) {
                 cp = ".";
-            }
+            }            
 
-            SearchPath path = createPath().addFiles(cp);
-            
-            // deenu modify: use custom cp dir 
-            String customCp = System.getProperty("javac.platform.classpath");
-            if (customCp != null) {
-                File customFile = new File(customCp);
-                if (customFile.exists()) {
-                    path.addFiles(customCp); 
-                }
-            }
-
-            return path;
+            return createPath().addFiles(cp);
         }
     
         @Override
