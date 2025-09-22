@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'  
     id 'com.diffplug.spotless' version '7.0.3'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.gradleup.shadow' version '9.1.0'
 }
 
 repositories {
@@ -27,7 +27,7 @@ shadowJar {
     mergeServiceFiles() 
     
     archiveFileName.set("${project.rootProject.name}.jar")
-    
+  
     dependsOn ':remaped:remap'
     dependsOn ':remaped:jar'
     dependsOn ':lib:shadowJar'
@@ -41,6 +41,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
+
 	
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'])
@@ -57,7 +58,7 @@ publishing {
             groupId = 'org.kodtik.ide'
             artifactId = 'javac'
             version = '25-beta'
-            from project.shadow.component(publication)
+            from(components.shadow)
         }        
     }
 }
