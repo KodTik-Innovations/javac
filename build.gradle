@@ -26,8 +26,9 @@ spotless {
 shadowJar {    
     mergeServiceFiles() 
     
-    archiveFileName.set("${project.rootProject.name}.jar")
-  
+    archiveFileName.set("${project.rootProject.name}.jar")    
+    archiveClassifier.set("") 
+
     dependsOn ':remaped:remap'
     dependsOn ':remaped:jar'
     dependsOn ':lib:shadowJar'
