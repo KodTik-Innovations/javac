@@ -58,10 +58,10 @@ tasks.assemble.dependsOn tasks.remap
 tasks.build.dependsOn tasks.remap
 
 dependencies {
-    compileOnly files('libs/remapped-java-compiler-24-29.jar')
-    compileOnly files('libs/remapped-jdk-compiler-24-29.jar')
-    compileOnly files('libs/remapped-jdk-internal-opt-24-29.jar')
-    compileOnly files('libs/remapped-jrt-fs-24-29.jar')
+    compileOnly files('libs/remapped-java-compiler-25.jar')
+    compileOnly files('libs/remapped-jdk-compiler-25.jar')
+    compileOnly files('libs/remapped-jdk-internal-opt-25.jar')
+    compileOnly files('libs/remapped-jrt-fs-25.jar')
     compileOnly files('libs/remapped-android-zipfs.jar')
 }
 
