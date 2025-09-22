@@ -301,15 +301,14 @@ public enum Source {
             this.optKind = optKind;
         }
 
-    public boolean allowedInSource(Source source) {
-      // deenu modify: android check
-      if (isDalvik() && optFragment == Fragments.FeatureModules) {
-        return false;
-      }
+        public boolean allowedInSource(Source source) {
+            // deenu modify: android check
+            if (isDalvik() && optFragment == Fragments.FeatureModules) {
+            return false;
+        }
 
-      return source.compareTo(minLevel) >= 0 && source.compareTo(maxLevel) <= 0;
-    }
-
+            return source.compareTo(minLevel) >= 0 && source.compareTo(maxLevel) <= 0;
+        }
 
         public boolean isPlural() {
             Assert.checkNonNull(optKind);
