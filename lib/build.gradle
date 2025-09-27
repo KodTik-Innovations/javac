@@ -22,6 +22,7 @@ shadowJar {
     exclude '**/*com/sun/tools/javac/file/Locations*'
     exclude '**/*com/sun/tools/javac/file/FSInfo*'
     exclude '**/*com/sun/tools/doclint/DocLint*'
+    exclude '**/*com/sun/tools/javac/api/JavacTrees*'
 
     archiveFileName.set("${project.name}.jar")
 }
