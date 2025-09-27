@@ -57,7 +57,7 @@ publishing {
         shadow(MavenPublication) { publication ->
             groupId = 'org.kodtik.ide'
             artifactId = 'javac'
-            version = '25-beta02'
+            version = '25-beta03'
             from(components.shadow)
         }        
     }
