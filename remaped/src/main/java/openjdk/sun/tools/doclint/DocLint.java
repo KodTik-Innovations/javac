@@ -29,8 +29,8 @@ import java.util.ServiceLoader;
 
 import openjdk.sun.source.util.JavacTask;
 import openjdk.sun.source.util.Plugin;
-import java.util.function.Supplier;
-    
+import openjdk.sun.tools.util.Provider;
+
 /**
  * The base class for the DocLint service used by javac.
  *
@@ -53,7 +53,7 @@ public abstract class DocLint implements Plugin {
             for (DocLint docLint : ServiceLoader.load(DocLint.class, ClassLoader.getSystemClassLoader())) {
                 if (docLint.getName().equals("doclint")) {
                     return docLint;                   
-               }
+                }
             }
             
             if (docLintProvider == null) {
@@ -92,45 +92,4 @@ public abstract class DocLint implements Plugin {
                     || s.startsWith(XCHECK_PACKAGE);
         }
     }
-
-    /**
-     * Represents a service provider located by {@code ServiceLoader}.
-     *
-     * <p> When using a loader's {@link ServiceLoader#stream() stream()} method
-     * then the elements are of type {@code Provider}. This allows processing
-     * to select or filter on the provider class without instantiating the
-     * provider. </p>
-     *
-     * @param  <S> The service type
-     * @since 9
-     */
-    public static interface Provider<S> extends Supplier<S> {
-        /**
-         * Returns the provider type. There is no guarantee that this type is
-         * accessible or that it has a public no-args constructor. The {@link
-         * #get() get()} method should be used to obtain the provider instance.
-         *
-         * <p> When a module declares that the provider class is created by a
-         * provider factory then this method returns the return type of its
-         * public static "{@code provider()}" method.
-         *
-         * @return The provider type
-         */
-        Class<? extends S> type();
-
-        /**
-         * Returns an instance of the provider.
-         *
-         * @return An instance of the provider.
-         *
-         * @throws ServiceConfigurationError
-         *         If the service provider cannot be instantiated, or in the
-         *         case of a provider factory, the public static
-         *         "{@code provider()}" method returns {@code null} or throws
-         *         an error or exception. The {@code ServiceConfigurationError}
-         *         will carry an appropriate cause where possible.
-         */
-        @Override S get();
-    }
-
 }
